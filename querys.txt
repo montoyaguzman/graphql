@@ -1,0 +1,21 @@
+query getAllCourses($topic: String!) {
+  getJavascriptCourses(topic: $topic) {
+    id
+    title
+  }
+}
+
+query getCourse($id: Int!) {
+  getCourseById(id: $id) {
+  	id
+    title
+    description
+    author
+    topic
+    url
+	}
+}
+
+{
+  "id": 1
+}
