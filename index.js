@@ -9,7 +9,9 @@ const { courses } = require("./data.json");
     message: String
   }
 `);*/
-const schema = buildSchema(`
+
+// Definicion de querys y modelo
+const schema = buildSchema(` 
   type Query {
     getCourseById(id: Int!): Course
     getJavascriptCourses(topic: String): [Course] 
@@ -60,4 +62,4 @@ app.use(
   })
 );
 
-app.listen(3000, () => console.log("Server init on port 3000..."));
+app.listen(3001, () => console.log("Server init on port 3001..."));
