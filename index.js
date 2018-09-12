@@ -4,13 +4,6 @@ const express_graphql = require("express-graphql");
 const { buildSchema } = require("graphql");
 const { courses } = require("./data.json");
 
-/*const schema = buildSchema(`
-  type Query {
-    message: String
-  }
-`);*/
-
-// Definicion de querys y modelo
 const schema = buildSchema(` 
   type Query {
     getCourseById(id: Int!): Course
@@ -43,10 +36,6 @@ let getJavascriptCourses = args => {
     return courses;
   }
 };
-
-/*const root = {
-  message: () => "Hello world!"
-};*/
 
 const root = {
   getCourseById: getCourseById,
