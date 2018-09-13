@@ -19,21 +19,18 @@ query getCourse($id: Int!) {
 }
 
 query getCourseWithFragments($courseID1: Int!, $courseID2: Int!) {
-  course1: course(id: $courseID1) {
+  course1: getCourseById(id: $courseID1) {
     ...courseFields
   }
-  course2: course(id: $courseID2) {
+  course2: getCourseById(id: $courseID2) {
     ...courseFields
   }
 }
 
 fragment courseFields on Course {
   title,
-  description,
   author,
-  topic,
-  url
-  
+  topic, 
 }
 
 

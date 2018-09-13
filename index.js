@@ -7,7 +7,7 @@ const { courses } = require("./data.json");
 const schema = buildSchema(` 
   type Query {
     getCourseById(id: Int!): Course
-    getJavascriptCourses(topic: String): [Course] 
+    getJavascriptCourses(topic: String!): [Course] 
   }
 
   type Course {
