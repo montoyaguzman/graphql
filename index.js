@@ -4,10 +4,19 @@ const express_graphql = require("express-graphql");
 const { buildSchema } = require("graphql");
 const { courses } = require("./data.json");
 
+// NOMRES
+/*
+html => root => query => funcion
+*/
+
 const schema = buildSchema(` 
   type Query {
     getCourseById(id: Int!): Course
-    getJavascriptCourses(topic: String!): [Course] 
+    getJavascriptCourses(topic: String!): [Course]
+  }
+
+  type Mutation {
+    updateCourseTopic(id: Int!, topic: String!): Course
   }
 
   type Course {
@@ -37,9 +46,20 @@ let getJavascriptCourses = args => {
   }
 };
 
+let updateCourseTopic = ({ id, topic }) => {
+  courses.map(course => {
+    if (course.id === id) {
+      course.topic = topic;
+      return course;
+    }
+  });
+  return courses.filter(course => course.id === id)[0];
+};
+
 const root = {
   getCourseById: getCourseById,
-  getJavascriptCourses: getJavascriptCourses
+  getJavascriptCourses: getJavascriptCourses,
+  updateCourseTopic: updateCourseTopic
 };
 
 app.use(

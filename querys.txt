@@ -1,17 +1,7 @@
-query getAllCourses($topic: String!) {
-  getJavascriptCourses(topic: $topic) {
-    id
-    title
-    topic
-  }
-}
-
-
 query getCourse($id: Int!) {
   getCourseById(id: $id) {
   	id
     title
-    description
     author
     topic
     url
@@ -29,14 +19,21 @@ query getCourseWithFragments($courseID1: Int!, $courseID2: Int!) {
 
 fragment courseFields on Course {
   title,
-  author,
-  topic, 
+  topic,
+  url
+  
+}
+
+mutation updateCourseTopic($id: Int!, $topic: String!) {
+	updateCourseTopic(id: $id, topic: $topic) {
+    ...courseFields
+  }
 }
 
 
 
 {
-  "id": 1,
+  "id": 2,
   "topic": "JavaScript",
   "courseID1": 1,
   "courseID2": 2
